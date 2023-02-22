@@ -2,19 +2,6 @@
 
 ## Build SDK
 
-In the SDK directory
-
-```
-npm build
-npm　link
-```
-
-## Link SDK
-
-```
- npm link  @metis.io/middleware-client
-```
-
 ## Project setup
 ```
 npm install
