@@ -19,7 +19,6 @@ app.get('/oauth2/access_token', async (req, res) => {
         })
 })
 
-
 app.get('/oauth2/refresh_token', async (req, res) => {
     var token = req.query.refresh_token;
 

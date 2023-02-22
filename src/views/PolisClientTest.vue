@@ -7,10 +7,7 @@
     <div>
       <div v-if="accessToken">
         <el-button type="primary" @click="disconnect">Disconnect</el-button>
-        <div>
-          Bridge MetaMask:<el-switch v-model="bridgeMetaMask" active-color="#13ce66" inactive-color="#ff4949">
-          </el-switch>
-        </div>
+        
         <el-row :gutter="20">
           <!--user action-->
           <el-col :span="6">
@@ -165,7 +162,8 @@ export default {
     ,
     closeLoading() {
       this.loadingDialog.close();
-    },
+    }
+    ,
     disconnect() {
       // window.open( 'http://localhost:1024/#/oauth2-logout','','height=200,width=200,top=-100,left=-100');
       this.polisclient.connect(this.oauthInfo, this.bridgeMetaMask);
@@ -213,7 +211,6 @@ export default {
           console.log("user info:" + JSON.stringify(this.userObj))
         })
 
-
         const response = await fetch(process.env.VUE_APP_API_HOST + `api/v1/oauth2/nft/nft_detail?contract_address=${process.env.VUE_APP_BADGE_ADDRESS}`, {
           headers: { 'Access-Token': this.accessToken }
         })
@@ -260,6 +257,7 @@ export default {
     getAccessToken() {
       if (this.code) {
         // axios.get(`https://polis.metis.io/api/v1/oauth2/access_token?app_id=${this.appid}&app_key=${this.appsecret}&code=${this.code}`)
+        console.log(`/api/oauth2/access_token?code=${this.code}&pre_auth_code=${this.pre_auth_code}`)
         axios.get(`/api/oauth2/access_token?code=${this.code}&pre_auth_code=${this.pre_auth_code}`)
           .then(async res => {
             console.log(res)
